@@ -64,7 +64,7 @@ for word in result4:
     i+=1
 
 def cure_get():
-    return result1
+    return result4
 
 # 匹配死亡
 pattern5 = re.compile(r'"deadCount":\d+')
@@ -76,6 +76,18 @@ for word in result5:
 def death_get():
     return result5
 
+"""
 i = 0
 for i in range(34): 
     print("{}地区 现存确诊{} 累计确诊{} 治愈{} 死亡{}".format(result1[i],result2[i],result3[i],result4[i],result5[i]))
+"""
+
+cure_rate = []
+i = 0
+for i in range(34):
+    cure_rate.append(float(result4[i])/float(result3[i]))
+
+province_rate = dict(zip(result1, cure_rate))
+print(sorted(province_rate.items(), key = lambda kv:(kv[1], kv[0])))
+
+
